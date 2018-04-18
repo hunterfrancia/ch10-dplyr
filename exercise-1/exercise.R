@@ -55,4 +55,3 @@ make_year_filter <- function(make_choice, year_choice) {
 
 # What was the most efficient Honda model of 1995?
 make_year_filter('Honda', 1995)
-
