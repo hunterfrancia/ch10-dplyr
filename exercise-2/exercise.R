@@ -54,3 +54,28 @@ make_year_filter <- function(make_choice, year_choice) {
 
 # What was the most efficient Honda model of 1995?
 make_year_filter('Honda', 1995)
+
+class <- ticket_class
+men_survived_df <- Titanic[Titanic$Class == "class" & Titanic$Sex == "Male" & Titanic$Survived == "Yes" & Titanic$Age == "Adult", ]
+men_survived_sum <- sum(men_survived_df$Freq)
+total_men_df <- Titanic[Titanic$Class == "class" & Titanic$Sex == "Male" & Titanic$Age == "Adult", ]
+total_men_sum <- sum(total_men_df$Freq)
+men_percent <- round((men_survived_sum / total_men_sum) * 100)
+
+total_adult_women_df <- Titanic[Titanic$Class == "class" & Titanic$Sex == "Female" & Titanic$Age == "Adult", ]
+total_adult_women_sum <- sum(total_adult_women_df$Freq)
+adult_women_survived_df <- Titanic[Titanic$Class == "class" & Titanic$Sex == "Female" & Titanic$Age == "Adult" 
+                                   & Titanic$Survived == "Yes", ]
+adult_women_survived_sum <- sum(adult_women_survived_df$Freq)
+
+total_child_df <- Titanic[Titanic$Class == "class" & Titanic$Age == "Child", ]
+total_child_sum <- sum(total_child_df$Freq)
+child_survived_df <- Titanic[Titanic$Class == "class" & Titanic$Age == "Child" & Titanic$Survived == "Yes", ]
+child_survived_sum <- sum(child_survived_df$Freq) 
+
+women_children_total_sum <- total_child_sum + total_adult_women_sum
+women_children_survived_sum <- adult_women_survived_sum + child_survived_sum 
+womenchild_percent <- round((women_children_survived_sum / women_children_total_sum) * 100)
+
+statement <- paste0("Of", class, "class", womenchild_percent, "% of women and children survived and", men_percent, "% of men survived.")
+statement
